@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "This app evaluates a news article with Natural Language Processing",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node src/server/index.js",
     "build-prod": "webpack --config webpack.prod.js",
@@ -25,8 +26,10 @@
   "homepage": "https://github.com/liberty-mugwara/news-article#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "helmet": "^4.6.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0"
   },
