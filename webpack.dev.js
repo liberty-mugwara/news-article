@@ -1,16 +1,20 @@
-const path = require("path");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+import { resolve as resolvePath, dirname, join as joinPath } from "path";
+import HtmlWebPackPlugin from "html-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 
-module.exports = {
-  entry: "src/client/index.js",
+export default {
+  entry: "./src/client/index.js",
   mode: "development",
   devtool: "source-map",
   stats: "verbose",
 
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: resolvePath("dist"),
+    library: {
+      name: "Client",
+      type: "umd",
+    },
   },
 
   module: {
@@ -28,25 +32,37 @@ module.exports = {
       {
         test: /\.s?css/,
         exclude: /node_modules/,
-        loader: "style-loader css-loader sass-loader",
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/client/views/index.html",
+      filename: "./index.html",
+      title: "Development",
+    }),
 
-    plugins: [
-      new HtmlWebPackPlugin({
-        template: "./src/client/views/index.html",
-        filename: "./index.html",
-      }),
+    new CleanWebpackPlugin({
+      // Simulate the removal of files
+      dry: true,
+      // Write Logs to Console
+      verbose: true,
+      // Automatically remove all unused webpack assets on rebuild
+      cleanStaleWebpackAssets: true,
+      protectWebpackAssets: false,
+    }),
+  ],
 
-      new CleanWebpackPlugin({
-        // Simulate the removal of files
-        dry: true,
-        // Write Logs to Console
-        verbose: true,
-        // Automatically remove all unused webpack assets on rebuild
-        cleanStaleWebpackAssets: true,
-        protectWebpackAssets: false,
-      }),
-    ],
+  devServer: {
+    static: joinPath(dirname(import.meta.url), "dist"),
+    compress: true,
+    clientLogLevel: "silent",
+    port: 3000,
+    open: true,
+    overlay: {
+      errors: true,
+      warnings: false,
+    },
   },
 };
