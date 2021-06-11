@@ -1,15 +1,19 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+import { resolve as resolvePath } from "path";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlWebPackPlugin from "html-webpack-plugin";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
 
-module.exports = {
-  entry: "src/client/index.js",
+export default {
+  entry: "./src/client/index.js",
   mode: "production",
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: resolvePath("dist"),
+    library: {
+      type: "var",
+      name: "Client",
+    },
   },
   module: {
     rules: [
@@ -26,7 +30,7 @@ module.exports = {
       {
         test: /\.s?css/,
         exclude: /node_modules/,
-        use: [new MiniCssExtractPlugin(), "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },
@@ -36,6 +40,7 @@ module.exports = {
       template: "./src/client/views/index.html",
       filename: "./index.html",
     }),
+    new MiniCssExtractPlugin({ filename: "[name].css" }),
   ],
 
   optimization: {
