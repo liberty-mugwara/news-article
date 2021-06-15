@@ -8,7 +8,7 @@ import express, {
 import helmet from "helmet";
 import cors from "cors";
 import chalk from "chalk";
-import mockRoutes from "./mockRoutes";
+import mockRoutes from "./mockRoutes.js";
 
 const apiData = {};
 
@@ -22,11 +22,6 @@ app.use(
 );
 
 app.post("/analyze", analyze);
-
-// used to check if server is responding
-app.get("/", (req, res) => {
-  res.json({ serverOK: true });
-});
 
 // mock routes
 app.use("/mock", mockRoutes);

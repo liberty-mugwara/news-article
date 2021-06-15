@@ -1,4 +1,4 @@
-const getHtml = (results) => {
+export const getHtml = (results) => {
   const score = {
     "P+": "strong positive",
     P: "positive",
