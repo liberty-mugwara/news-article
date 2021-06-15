@@ -24,3 +24,9 @@ Open another terminal and run the following command:
 npm run build-prod
 npm run start
 ```
+
+## Run tests
+
+```
+npm run test
+```
