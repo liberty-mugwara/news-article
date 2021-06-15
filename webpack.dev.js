@@ -55,14 +55,8 @@ export default {
   ],
 
   devServer: {
-    static: joinPath(dirname(import.meta.url), "dist"),
     compress: true,
-    clientLogLevel: "silent",
     port: 3000,
     open: true,
-    overlay: {
-      errors: true,
-      warnings: false,
-    },
   },
 };
