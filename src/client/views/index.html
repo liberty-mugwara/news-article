@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Article</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="main-heading">News Article</h1>
+      <h2 class="sub-heading">Sentiment Analysis</h2>
+    </header>
+
+    <main>
+      <section>
+        <form class="" onsubmit="return Client.handleSubmit(event)">
+          <div id="form-error" class="form-error hidden"></div>
+          <input
+            id="url"
+            type="text"
+            name="url"
+            value=""
+            placeholder="Enter url"
+          />
+          <button class="submit-btn" type="submit">Submit</button>
+          <div></div>
+        </form>
+      </section>
+
+      <section class="container">
+        <h3 class="heading-3">Form Results:</h3>
+        <div id="results" class="results"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2021 mugs technologies</p>
+    </footer>
+
+    <script>
+      // Check that service workers are supported
+      if ("serviceWorker" in navigator) {
+        // Use the window load event to keep the page load performance
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js");
+        });
+      }
+    </script>
+  </body>
+</html>
