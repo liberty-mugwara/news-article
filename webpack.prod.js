@@ -3,6 +3,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebPackPlugin from "html-webpack-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
+import WorkboxPlugin from "workbox-webpack-plugin";
 
 export default {
   entry: "./src/client/index.js",
@@ -41,6 +42,7 @@ export default {
       filename: "./index.html",
     }),
     new MiniCssExtractPlugin({ filename: "[name].css" }),
+    new WorkboxPlugin.GenerateSW(),
   ],
 
   optimization: {
