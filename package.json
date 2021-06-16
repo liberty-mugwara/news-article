@@ -2,7 +2,7 @@
   "name": "news-article",
   "version": "0.1.0",
   "description": "This app evaluates a news article with Natural Language Processing",
-  "main": "index.js",
+  "main": "arc/server/index.js",
   "type": "module",
   "jest": {
     "verbose": true
@@ -60,6 +60,6 @@
   "engines": {
     "node": "16.x",
     "npm": "7.x",
-    "yarn": "2.x"
+    "yarn": "2"
   }
 }
