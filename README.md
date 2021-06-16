@@ -30,3 +30,6 @@ npm run start
 ```
 npm run test
 ```
+
+## production url
+Click [here](https://mugs-sentiment.herokuapp.com/) to view the app in production 
