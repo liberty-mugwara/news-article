@@ -44,7 +44,7 @@ async function analyze(req, res) {
 
     if (response) {
       // Save response locally
-      if (response.data.status?.code === "0") {
+      if (response.data.status && response.data.status.code === "0") {
         const { model, agreement, confidence, irony, subjectivity, score_tag } =
           response.data;
 
